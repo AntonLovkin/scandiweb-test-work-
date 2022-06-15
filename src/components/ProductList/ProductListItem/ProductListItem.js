@@ -4,7 +4,7 @@ const ProductListItem = ({ item, onChange }) => {
     
     const { sku, name, price, size, height, width, length, weight, id, checked } = item;
     return (
-        <li className={styles.ProductsGalleryItem}>
+        <li className={styles.product}>
             <input
                 type="checkbox"
                 className="delete-checkbox"

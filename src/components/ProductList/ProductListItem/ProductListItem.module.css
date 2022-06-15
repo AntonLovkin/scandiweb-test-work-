@@ -1,7 +1,4 @@
-/*
- * Стили компонента ProductsGalleryItem
- */
-.ProductsGalleryItem {
+.product {
     background-color: #fff;
     display: flex;
     flex-direction: column;

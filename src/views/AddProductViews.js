@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Link } from 'react-router-dom';
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './styles.module.css';
 import { nanoid } from 'nanoid'
 
@@ -87,7 +86,6 @@ const AddProductView = () => {
         } else {
             const newProducts = [...products, product];
             window.localStorage.setItem('products', JSON.stringify(newProducts))
-            // console.log(products)
             clearForm();
             navigate('/');
         }
@@ -97,8 +95,6 @@ const AddProductView = () => {
         evt.preventDefault();
 
         const productData = { sku, name, price, size, height, width, length, weight, id: nanoid(), checked: false }
-        // console.log({sku, name, price, size, height, width, length, weight });
-
         addProduct(productData);
     };
 
@@ -159,7 +155,7 @@ const AddProductView = () => {
                         pattern="[0-9]+"
                         title="Please, provide price"
                         onChange={inputChange}
-                        // autoComplete="off"
+                        autoComplete="off"
                         required
                     />
                 </label>
@@ -184,7 +180,7 @@ const AddProductView = () => {
                             pattern="[0-9]+"
                             title="Please, provide size"
                             onChange={inputChange}
-                            // autoComplete="off"
+                            autoComplete="off"
                             required
                         />
                     </label>}
@@ -201,7 +197,7 @@ const AddProductView = () => {
                                 pattern="[0-9]+"
                                 title="Please, provide height"
                             onChange={inputChange}
-                            // autoComplete="off"
+                            autoComplete="off"
                                 required
                             />
                         </label>
@@ -215,7 +211,7 @@ const AddProductView = () => {
                                 pattern="[0-9]+"
                                 title="Please, provide width"
                             onChange={inputChange}
-                            // autoComplete="off"
+                            autoComplete="off"
                                 required
                             />
                         </label>
@@ -229,7 +225,7 @@ const AddProductView = () => {
                                 pattern="[0-9]+"
                                 title="Please, provide length"
                             onChange={inputChange}
-                            // autoComplete="off"
+                            autoComplete="off"
                                 required
                             />
                         </label>
@@ -246,7 +242,7 @@ const AddProductView = () => {
                             pattern="[0-9]+"
                             title="Please, provide weight"
                             onChange={inputChange}
-                            // autoComplete="off"
+                            autoComplete="off"
                             required
                         />
                     </label>}
