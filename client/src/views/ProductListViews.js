@@ -1,6 +1,8 @@
 import { lazy, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+import {fetchProducts} from '../api';
+
 import AppBar from '../components/AppBar/AppBar';
 import Button from "../components/Button/Button";
 
@@ -19,17 +21,19 @@ const ProductListViews = ()=> {
     const [products, setProducts] = useState(null);
 
     useEffect(() => {
-        if (!products) {
-            setProducts(JSON.parse(window.localStorage.getItem('products')))
-        } else {
-            window.localStorage.setItem('products', JSON.stringify(products))
-        }     
-    }, [products]);
+        const products = fetchProducts().then(({data}) => setProducts(data))
+        console.log(products)
+        // if (!products) {
+        //     setProducts(JSON.parse(window.localStorage.getItem('products')))
+        // } else {
+        //     window.localStorage.setItem('products', JSON.stringify(products))
+        // }     
+    }, []);
 
     const handleOnChangeCheckbox = (productId) => {
         setProducts(prevState => (
             prevState.map(product => {
-                if (productId === product.id) {
+                if (productId === product._id) {
                     return { ...product, checked: !product.checked }
                 }
                 return product;

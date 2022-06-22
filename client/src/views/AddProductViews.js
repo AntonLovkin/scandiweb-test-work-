@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
+
+import { fetchProducts, createProduct } from '../api';
+
 import styles from './styles.module.css';
-import { nanoid } from 'nanoid'
+import { nanoid } from 'nanoid';
 
 const AddProductView = () => {
     const navigate = useNavigate();
@@ -79,22 +82,35 @@ const AddProductView = () => {
     };
 
     const addProduct = (product) => {
-        const products = JSON.parse(window.localStorage.getItem('products'));
+        const products = fetchProducts().then(({ data }) => console.log(data));
 
-        if (products.find(({ sku }) => sku === product.sku)) {
-            alert(`A product SKU ${product.sku} already exists`);
-        } else {
-            const newProducts = [...products, product];
-            window.localStorage.setItem('products', JSON.stringify(newProducts))
+        // if (products.find(({ sku }) => sku === product.sku)) {
+        //     alert(`A product SKU ${product.sku} already exists`);
+        // } else {
+            createProduct(product);
+            // const newProducts = [...products, product];
+            // window.localStorage.setItem('products', JSON.stringify(newProducts))
             clearForm();
             navigate('/');
-        }
-    }
+        // }
+
+        // const products = JSON.parse(window.localStorage.getItem('products'));
+
+        // if (products.find(({ sku }) => sku === product.sku)) {
+        //     alert(`A product SKU ${product.sku} already exists`);
+        // } else {
+        //     const newProducts = [...products, product];
+        //     window.localStorage.setItem('products', JSON.stringify(newProducts))
+        //     clearForm();
+        //     navigate('/');
+        // }
+    };
 
     const onFormSubmit = evt => {
         evt.preventDefault();
 
-        const productData = { sku, name, price, size, height, width, length, weight, id: nanoid(), checked: false }
+        // const productData = { sku, name, price, size, height, width, length, weight, id: nanoid(), checked: false }
+        const productData = { sku, name, price, size, height, width, length, weight, checked: false }
         addProduct(productData);
     };
 
